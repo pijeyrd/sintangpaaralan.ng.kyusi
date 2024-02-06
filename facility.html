@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facilities</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background: url(bg3.jpg);
+            background: cover;
+            padding: 0px 150px 60px 150px;
+        }
+
+        header {
+            margin: 0%;
+            color: maroon;
+            padding: 0px;
+            text-align: center;
+            text-shadow: 0 0 5px white,
+            0 0 5px white,
+            0 0 5px white,
+            0 0 5px white;
+        }
+
+        .autocomplete {
+  position: relative;
+  display: inline-block;
+  width: 300px;
+  border: 2px solid maroon;
+  border-radius: 8px;
+  
+}
+
+.autocomplete input[type="text"] {
+  width: calc(113.5% - 40px); 
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  
+}
+
+.autocomplete i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+}
+
+#autocompleteResults {
+  color: maroon;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border-top: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.autocomplete-results div {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 10px;
+}
+
+.autocomplete-results div:hover {
+  color: white;
+  background-color: maroon;
+}
+
+.autocomplete-results div:first-child {
+  border-top: none;
+}
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border: 3px solid maroon;
+        }
+
+        button {
+            background-color: white;
+            color: maroon;
+            padding: 0.5em 1em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid maroon;
+        }
+
+        button:hover {
+            background-color: maroon;
+            color: white;
+            border: 2px solid white;
+        }
+
+        footer {
+        background-color: white;
+        color: black;
+        padding: 2px;
+        text-align: center;
+        position: static;
+        bottom: 0;
+        width: 99%;
+        border: 3px solid black;
+    }
+    </style>
+</head>
+
+<div class="autocomplete">
+    <input type="text" id="searchInput" placeholder="Search Pages.....">
+    <div id="autocompleteResults" class="autocomplete-results"></div>
+  </div>      
+
+<script>
+const searchInput = document.getElementById('searchInput');
+const autocompleteResults = document.getElementById('autocompleteResults');
+
+const fixedResults = ['Home', 'Student Organizations', 'Goals', 'Facilities', 'Contacts', 'Help and Support', ]; // Fixed results
+
+// Define mapping of results to corresponding pages
+const pages = {
+'Home': 'home.html',
+'Student Organizations': 'students.html',
+'Goals': 'goal.html',
+'Facilities': 'facility.html',
+'Contacts': 'contact.html',
+'Help and Support': 'help.html'
+};
+
+searchInput.addEventListener('input', function() {
+const searchQuery = this.value;
+let results = [];
+
+if (searchQuery) {
+// Filter fixed results based on search query
+results = fixedResults.filter(item =>
+item.toLowerCase().includes(searchQuery.toLowerCase())
+);
+
+// If there are no fixed results matching the search query, clear the autocomplete results
+if (results.length === 0) {
+autocompleteResults.innerHTML = '<div>No results found! Try another word!</div>';
+return;
+}
+} else {
+results = fixedResults; // Display fixed results when no query
+}
+
+displayResults(results);
+});
+
+function displayResults(results) {
+if (results.length > 0) {
+const html = results.map(result => `<div>${result}</div>`).join('');
+autocompleteResults.innerHTML = html;
+} else {
+autocompleteResults.innerHTML = '<div>No results found</div>';
+}
+}
+
+autocompleteResults.addEventListener('click', function(event) {
+if (event.target.tagName === 'DIV') {
+const selectedResult = event.target.textContent;
+searchInput.value = selectedResult;
+
+// Check if the selected result has a corresponding page
+if (pages[selectedResult]) {
+// Redirect to the corresponding page
+window.location.href = pages[selectedResult];
+} else {
+console.log("No page found for the selected result.");
+}
+}
+});
+
+</script>
+
+<a href="help.html">
+    <button type="helpbutton">Need help?</button>
+  </a>
+<body>
+
+    <header>
+        <h1>PUPQC Facilities</h1>
+    </header>
+
+    <main class="container">
+
+        <section class="row">
+            <div class="col-md-6">
+                <h2>Entrance Gate</h2>
+                <p>PUPQC Entrance Gate</p>
+            </div>
+            <div class="col-md-6">
+                <img src="pupgate.jpg" alt="Facility 1 Image" class="img-fluid">
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="col-md-6 order-md-2">
+                <h2>Gymnasium (Winnie Castelo Welfare Complex)
+                </h2>
+                <p>A hall where games and physical training are held. Additionally, Important events of the University.</p>
+            </div>
+            <div class="col-md-6 order-md-1">
+                <img src="gymnasium.jpg" alt="Facility 2 Image" class="img-fluid">
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="col-md-6">
+                <h2>Rothlehner Building</h2>
+                <p>Inside the Rothlehner Building you will find the Medical Clinic, Records Management Office, and more important offices.</p>
+            </div>
+            <div class="col-md-6">
+                <img src="rothlehner.jpg" alt="Facility 1 Image" class="img-fluid">
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="col-md-6 order-md-2">
+                <h2>Alumni Building</h2>
+                <p> a place for former student or pupil of a school, college, or university.</p>
+            </div>
+            <div class="col-md-6 order-md-1">
+                <img src="alumni.jpg" alt="Facility 2 Image" class="img-fluid">
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="col-md-6">
+                <h2>Pathway</h2>
+                <p>a path which you can walk along or a route which you can take.</p>
+            </div>
+            <div class="col-md-6">
+                <img src="pathway.jpg" alt="Facility 1 Image" class="img-fluid">
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="col-md-6 order-md-2">
+                <h2>Academic Building</h2>
+                <p>a physical space designed and equipped to support various academic activities, including teaching, learning, research, and administration, and to provide a conducive environment for academic excellence and innovation.</p>
+            </div>
+            <div class="col-md-6 order-md-1">
+                <img src="acadbuil.jpg" alt="Facility 2 Image" class="img-fluid">
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="col-md-6">
+                <h2>Interfaith Chapel</h2>
+                <p>a sacred space designed to provide a welcoming environment for people of all faiths and beliefs to come together for prayer, reflection, and meditation, fostering spiritual growth, understanding, and respect for diversity.</p>
+            </div>
+            <div class="col-md-6">
+                <img src="faithchap.jpg" alt="Facility 1 Image" class="img-fluid">
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="col-md-6 order-md-2">
+                <h2>Student Organization Rooms</h2>
+                <p>designated area or place for the PUPQC Student's Organizations. It is located behind the Interfaith Chapel.</p>
+            </div>
+            <div class="col-md-6 order-md-1">
+                <img src="sto.jpg" alt="Facility 2 Image" class="img-fluid">
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="col-md-6">
+                <h2>Student Lounge</h2>
+                <p> a designated area within the campus where students can relax, socialize, and engage in various recreational activities outside the classroom. It serves as a hub for student life, promoting a sense of community, connection, and well-being among the student population.</p>
+            </div>
+            <div class="col-md-6">
+                <img src="studentlounge.jpg" alt="Facility 1 Image" class="img-fluid">
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="col-md-6 order-md-2">
+                <h2>Misereor Building</h2>
+                <p>Inside the Misereor Building you will find the Director's Office, Admission Office, Office of Academic Program, Learning Resources Center, and more important offices.</p>
+            </div>
+            <div class="col-md-6 order-md-1">
+                <img src="misereor.jpg" alt="Facility 2 Image" class="img-fluid">
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="col-md-6">
+                <h2>Pylon</h2>
+                <p>Symbolized truth, excellence and wisdom.</p>
+            </div>
+            <div class="col-md-6 order-md-1">
+                <img src="pylongoals.jpg" alt="Facility 4 Image" class="img-fluid">
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="col-md-6 order-md-2">
+                <h2>AVR and Computer Laboratory</h2>
+                <p>The audio-visual room is a place where the students of all classes experience learning in an effective way. A computer lab is a space where computer services are provided to a defined community. These are typically public libraries and academic institutions. Generally, users must follow a certain user policy to retain access to the computers.</p>
+            </div>
+            <div class="col-md-6 order-md-1">
+                <img src="avr.jpg" alt="Facility 2 Image" class="img-fluid">
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="col-md-6">
+                <h2>Department of Military Science and Tactics</h2>
+                <p>a specialized academic unit that offers courses and programs in military science, leadership, and strategy, providing students with the knowledge, skills, and values necessary for a career in the military or other related fields.</p>
+                </div>
+            <div class="col-md-6 order-md-1">
+                <img src="rotc.jpg" alt="Facility 4 Image" class="img-fluid">
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; Thank you for visiting Polythecnic University of the Philippines. &copy; 2024 [PUPQC]. All rights reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url(bg2.jpg);
+            background: cover;
+        }
+
+        header {
+            margin: 0%;
+            color: maroon;
+            padding: 0px;
+            text-align: center;
+            text-shadow: 0 0 5px white,
+            0 0 5px white,
+            0 0 5px white,
+            0 0 5px white;
+        }
+
+        .autocomplete {
+  position: relative;
+  display: inline-block;
+  width: 300px;
+  border: 2px solid maroon;
+  border-radius: 8px;
+  
+}
+
+.autocomplete input[type="text"] {
+  width: calc(105.5% - 40px); 
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  
+}
+
+.autocomplete i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+}
+
+#autocompleteResults {
+  color: maroon;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border-top: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.autocomplete-results div {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 10px;
+}
+
+.autocomplete-results div:hover {
+  color: white;
+  background-color: maroon;
+}
+
+.autocomplete-results div:first-child {
+  border-top: none;
+}
+
+        section {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px;
+        }
+
+        .column {
+            color: black;
+            flex: 1;
+            background-color: #fff;
+            border: 3px solid maroon;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 10px;
+            border-radius: 8px;
+        }
+
+        button {
+            background-color: white;
+            color: maroon;
+            padding: 0.5em 1em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid maroon;
+        }
+
+        button:hover {
+            background-color: maroon;
+            color: white;
+            border: 2px solid white;
+        }
+
+        footer {
+           margin: 30px;
+           background-color: white;
+           color: black;
+           padding: 2px;
+           align-items: center;
+           justify-content: center;
+           text-align: center;
+           position: static;
+           bottom: 0;
+           width: 94%;
+           border: 3px solid black;
+        }
+    </style>
+</head>
+
+<div class="autocomplete">
+    <input type="text" id="searchInput" placeholder="Search Pages.....">
+    <div id="autocompleteResults" class="autocomplete-results"></div>
+  </div>      
+
+<script>
+const searchInput = document.getElementById('searchInput');
+const autocompleteResults = document.getElementById('autocompleteResults');
+
+const fixedResults = ['Home', 'Student Organizations', 'Goals', 'Facilities', 'Contacts', 'Help and Support', ]; // Fixed results
+
+// Define mapping of results to corresponding pages
+const pages = {
+'Home': 'home.html',
+'Student Organizations': 'students.html',
+'Goals': 'goal.html',
+'Facilities': 'facility.html',
+'Contacts': 'contact.html',
+'Help and Support': 'help.html'
+};
+
+searchInput.addEventListener('input', function() {
+const searchQuery = this.value;
+let results = [];
+
+if (searchQuery) {
+// Filter fixed results based on search query
+results = fixedResults.filter(item =>
+item.toLowerCase().includes(searchQuery.toLowerCase())
+);
+
+// If there are no fixed results matching the search query, clear the autocomplete results
+if (results.length === 0) {
+autocompleteResults.innerHTML = '<div>No results found! Try another word!</div>';
+return;
+}
+} else {
+results = fixedResults; // Display fixed results when no query
+}
+
+displayResults(results);
+});
+
+function displayResults(results) {
+if (results.length > 0) {
+const html = results.map(result => `<div>${result}</div>`).join('');
+autocompleteResults.innerHTML = html;
+} else {
+autocompleteResults.innerHTML = '<div>No results found</div>';
+}
+}
+
+autocompleteResults.addEventListener('click', function(event) {
+if (event.target.tagName === 'DIV') {
+const selectedResult = event.target.textContent;
+searchInput.value = selectedResult;
+
+// Check if the selected result has a corresponding page
+if (pages[selectedResult]) {
+// Redirect to the corresponding page
+window.location.href = pages[selectedResult];
+} else {
+console.log("No page found for the selected result.");
+}
+}
+});
+
+</script>
+
+<a href="help.html">
+    <button type="helpbutton">Need help?</button>
+  </a>
+<body>
+
+    <header>
+        <h1>PUPQC Student Organizations</h1>
+        <b><p>Accredited and Revalidated Student Organizations as of Academic Year 2021-2022</p></b>
+    </header>
+
+    <section>
+        <div class="column">
+            <center><h2>Control Number:</h2>
+           <P>2122-BNC-022</P>
+           <P>2122-BNC-024</P>
+           <P>2122-BNC-027</P>
+           <P>2122-BNC-037</P>
+           <P>2122-BNC-038</P>
+           <P>2122-BNC-061</P>
+           <P>2122-BNC-065</P>
+           <P>2122-BNC-075</P>
+           <P>2122-BNC-104</P>
+           <P>2122-BNC-122</P>
+           <P>2122-BNC-214</P></center>
+        </div>
+
+        <div class="column">
+            <center><h2>Organizations:</h2>
+            <P>Junior Marketing Society</P>
+            <P>Future Business Teachers’ Organization</P>
+            <P>Kapatiran ng Talino at Galing (KATAGA)</P>
+            <P>Distinguished Organization of Management Technologist and Corporate Specialist (DOMT.Cs)</P>
+            <P>PUPQC Sports Club</P>
+            <P>Commonwealth Information Technology Society</P>
+            <P>Mag-aaral ng Unibersidad sa Sining at Adhika</P>
+            <P>I REACH OUT FOR CHRIST'S KINGDOM GENERATION</P>
+            <P>Community of Human Resource Students</P>
+            <P>Polytechnic University of the Philippines Quezon City Red Cross Youth Council</P>
+            <P>Youth Entrepreneurs Society - PUPQC</P></center>
+        </div>
+
+        <div class="column">
+            <center><h2>Facebook Page:</h2></center>
+            <div>
+                <ul>
+                    <li>
+                        <a href="https://web.facebook.com/JMSPUPQC/">
+                            <i class="fa-brands fa-x-pupqc facebook page-f"></i>
+                            <span>Junior Marketing Society</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://web.facebook.com/fbtopupmanila/">
+                            <i class="fa-brands fa-x-musa pupqc"></i>
+                            <p>Future Business Teachers’ Organization</p>
+                        </a>
+                    </li>
+                    <li>
+                    <a href="https://web.facebook.com/katagapupqc/">
+                        <i class="fa-brands fa-vox nova"></i>
+                        <span>Kapatiran ng Talino at Galing (KATAGA)</span>
+                    </a>
+                    </li>
+                    <li>
+                        <a href="https://web.facebook.com/DOMT.CsPUPQCOfficial/">
+                            <i class="fa-brands fa-pupqc council of leaders"></i>
+                            <p>Distinguished Organization of Management Technologist and Corporate Specialist (DOMT.Cs)</p>
+                        </a>
+                        </li>
+                            <li>
+                                <a href="https://web.facebook.com/PSCofficial19/">
+                                    <i class="fa-brands fa-pupqc facebook page-f"></i>
+                                    <span>PUPQC Sports Club</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://web.facebook.com/CommITSPUPQC/">
+                                    <i class="fa-brands fa-x-musa pupqc"></i>
+                                    <p>Commonwealth Information Technology Society</p>
+                                </a>
+                            </li>
+                            <li>
+                            <a href="https://web.facebook.com/musapupqc/">
+                                <i class="fa-brands fa-vox nova"></i>
+                                <span>Mag-aaral ng Unibersidad sa Sining at Adhika</span>
+                            </a>
+                            </li>
+                            <li>
+                                    <i class="fa-brands fa-facebook page"></i>
+                                    <p>I REACH OUT FOR CHRIST'S KINGDOM GENERATION</p>
+                                </a>
+                                </li>
+                                <li>
+                                    <a href="https://web.facebook.com/chrspupqc/">
+                                        <i class="fa-brands fa-pupqc facebook page-f"></i>
+                                        <span>Community of Human Resource Students</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://web.facebook.com/PUPQCRCY/">
+                                        <i class="fa-brands fa-x-musa pupqc"></i>
+                                        <p>Polytechnic University of the Philippines Quezon City Red Cross Youth Council</p>
+                                    </a>
+                                </li>
+                                <li>
+                                <a href="https://web.facebook.com/YouthEntrepreneursSociety/">
+                                    <i class="fa-brands fa-vox nova"></i>
+                                    <span>Youth Entrepreneurs Society - PUPQC</span>
+                                </a>
+                                </li>
+                </ul>
+                </div>
+                </div>
+</section>
+
+<footer>
+    <p>&copy; Thank you for visiting Polythecnic University of the Philippines. &copy; 2024 [PUPQC]. All rights reserved. </p>
+</footer>
+
+</body>
+</html>

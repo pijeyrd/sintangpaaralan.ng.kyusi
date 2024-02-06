@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: url(bg3.jpg);
+            background: cover;
+            padding: 0px 150px 60px 150px;
+        }
+
+        header {
+            margin: 0%;
+            color: maroon;
+            padding: 0px;
+            text-align: center;
+            text-shadow: 0 0 5px white,
+            0 0 5px white,
+            0 0 5px white,
+            0 0 5px white;
+        }
+
+
+        section {
+            text-align: center;
+            padding: 30px;
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            border: 3px solid maroon;
+        }
+
+        button {
+            padding: 10px;
+            background-color: maroon;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        button:hover {
+            background-color: darkgreen;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Help Center</h1>
+    </header>
+
+    <body>
+
+    <section id="faq" class="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div id="faq-content"></div>
+
+        <h3>How do I apply to the university?</h3>
+        <button class="toggleButton" data-target="answers1">Details</button>
+        <div class="toggle-content" id="answers1">
+        <p>You can apply by heading to the university. Make sure to check the specific requirements for your desired program and submit all necessary documents by the deadline.</p>
+        </div>
+
+        <h3>What is the application deadline?</h3>
+        <button class="toggleButton" data-target="answers2">Details</button>
+        <div class="toggle-content" id="answers2">
+        <p>Application deadlines vary by program and admission type. Please refer to the university's official website or contact the admissions office for the most accurate and up-to-date information.</p>
+        </div>
+
+<script>
+  var toggleButtons = document.getElementsByClassName('toggleButton');
+
+  for (var i = 0; i < toggleButtons.length; i++) {
+    toggleButtons[i].addEventListener('click', function() {
+      var targetId = this.getAttribute('data-target');
+      var targetDiv = document.getElementById(targetId);
+
+      if (targetDiv.style.display === 'none') {
+        targetDiv.style.display = 'block';
+      } else {
+        targetDiv.style.display = 'none';
+      }
+    });
+  }
+</script>
+    </section>
+
+<section id="getting-started">
+    <h2>University Courses Offfered</h2>
+    <p>Click the button to be directed.</p>
+    <button onclick="showAlert('Click the OK button and You will be directed to the University Programs, Courses, and Studies offered', 'course.html')">more informations</button>
+</section>
+
+<section id="features">
+    <h2>PUP Quezon City</h2>
+    <p>Click the button to be directed.</p>
+    <button onclick="showAlert('Explore our amazing university! Click the OK button and You will be directed.', 'pupqc.html')">more informations</button>
+</section>
+
+<section id="troubleshooting">
+    <h2>Branch Contact Informations</h2>
+    <p>Click the button to be directed.</p>
+    <button onclick="showAlert('Having troubles to contact the university contacts? Click the OK button and You will be directed to the Branch Contact Informations.', 'branch.html')">more informations</button>
+</section>
+
+    <script>
+        // Function to display alerts
+function showAlert(message ,redirectUrl) {
+    alert(message);
+
+    if (redirectUrl) {
+        window.location.href = redirectUrl;
+    }
+}
+
+// Function to populate section content dynamically
+function populateSectionContent(sectionId, content) {
+    const section = document.getElementById(sectionId);
+    const sectionContent = section.querySelector(`#${sectionId}-content`);
+    sectionContent.textContent = content;
+}
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Programs Offered</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: url(bg1.jpg);
+            background: cover;
+            padding: 0px 150px 60px 150px;
+        }
+
+        header {
+            margin: 0%;
+            color: maroon;
+            padding: 0px;
+            text-align: center;
+            text-shadow: 0 0 5px white,
+            0 0 5px white,
+            0 0 5px white,
+            0 0 5px white;
+        }
+
+        .autocomplete {
+  position: relative;
+  display: inline-block;
+  width: 300px;
+  border: 2px solid maroon;
+  border-radius: 8px;
+  
+}
+
+.autocomplete input[type="text"] {
+  width: calc(105.5% - 40px); 
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  
+}
+
+.autocomplete i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+}
+
+#autocompleteResults {
+  color: maroon;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border-top: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.autocomplete-results div {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 10px;
+}
+
+.autocomplete-results div:hover {
+  color: white;
+  background-color: maroon;
+}
+
+.autocomplete-results div:first-child {
+  border-top: none;
+}
+
+        .description {
+            text-align: center;
+            font-size: 15px;
+            border-radius: 8px;
+            border: 3px solid maroon;
+            padding: 30px 0px;
+            background: white;
+            max-width: 100%;
+            margin: 20px auto;
+        }
+
+        h2 {
+            color: maroon;
+        }
+
+        h3 {
+            color:#909090;
+        }
+
+        button {
+            background-color: white;
+            color: maroon;
+            padding: 0.5em 1em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid maroon;
+        }
+
+        button:hover {
+            background-color: maroon;
+            color: white;
+            border: 2px solid white;
+        }
+
+        footer {
+        background-color: white;
+        color: black;
+        padding: 2px;
+        text-align: center;
+        position: static;
+        bottom: 0;
+        width: 99%;
+        border: 3px solid black;
+}
+    </style>
+</head>
+
+<div class="autocomplete">
+    <input type="text" id="searchInput" placeholder="Search Pages.....">
+    <div id="autocompleteResults" class="autocomplete-results"></div>
+  </div>      
+
+<script>
+const searchInput = document.getElementById('searchInput');
+const autocompleteResults = document.getElementById('autocompleteResults');
+
+const fixedResults = ['Home', 'Student Organizations', 'Goals', 'Facilities', 'Contacts', 'Help and Support', ]; // Fixed results
+
+// Define mapping of results to corresponding pages
+const pages = {
+'Home': 'home.html',
+'Student Organizations': 'students.html',
+'Goals': 'goal.html',
+'Facilities': 'facility.html',
+'Contacts': 'contact.html',
+'Help and Support': 'help.html'
+};
+
+searchInput.addEventListener('input', function() {
+const searchQuery = this.value;
+let results = [];
+
+if (searchQuery) {
+// Filter fixed results based on search query
+results = fixedResults.filter(item =>
+item.toLowerCase().includes(searchQuery.toLowerCase())
+);
+
+// If there are no fixed results matching the search query, clear the autocomplete results
+if (results.length === 0) {
+autocompleteResults.innerHTML = '<div>No results found! Try another word!</div>';
+return;
+}
+} else {
+results = fixedResults; // Display fixed results when no query
+}
+
+displayResults(results);
+});
+
+function displayResults(results) {
+if (results.length > 0) {
+const html = results.map(result => `<div>${result}</div>`).join('');
+autocompleteResults.innerHTML = html;
+} else {
+autocompleteResults.innerHTML = '<div>No results found</div>';
+}
+}
+
+autocompleteResults.addEventListener('click', function(event) {
+if (event.target.tagName === 'DIV') {
+const selectedResult = event.target.textContent;
+searchInput.value = selectedResult;
+
+// Check if the selected result has a corresponding page
+if (pages[selectedResult]) {
+// Redirect to the corresponding page
+window.location.href = pages[selectedResult];
+} else {
+console.log("No page found for the selected result.");
+}
+}
+});
+
+</script>
+
+<a href="help.html">
+    <button type="button">Need help?</button>
+  </a>
+<body>
+
+    <header>
+        <h1>Academic Programs</h1>
+    </header>
+
+    <main>
+
+        <div class="description">
+            <h2>Graduate Studies</h2>
+            <h3>Offered through the PUP Open University System</h3>
+            <p>Master in Information Technology</p>
+            <p>Master in Educational Management</p>
+            <p>Master in Public Administration</p>
+            <br>
+            <h2>Undergraduate Degrees</h2>
+            <p>Bachelor of Science in Information Technology (BSIT)</p>
+            <p>Bachelor of Business Technology and Livelihood Education major in Home Economics (BBTLEDHE)</p>
+            <p>Bachelor of Business Technology and Livelihood Education major in Information Communication and Technology (BTLEDICT)</p>
+            <p>Bachelor of Science in Business Administration major in Human Resource Management (BSBAHRM)</p>
+            <p>Bachelor of Science in Business Administration major in Marketing Management (BSBA-MM)</p>
+            <p>Bachelor of Science in Entrepreneurship (BSENTREP)</p>
+            <p>Bachelor of Public Administration major in Public Financial Management (BPAPFM)</p>
+            <p>Diploma in Office Management Technology Medical Office Management (DOMTMOM)</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; Thank you for visiting Polythecnic University of the Philippines. &copy; 2024 [PUPQC]. All rights reserved.</p></center>
+    </footer>
+
+</body>
+</html>

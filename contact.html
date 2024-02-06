@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url(bg3.jpg);
+            background: cover;
+            padding: 0px 150px 60px 150px;
+        }
+
+        header {
+            margin: 0%;
+            color: maroon;
+            padding: 0px;
+            text-align: center;
+            text-shadow: 0 0 5px white,
+            0 0 5px white,
+            0 0 5px white,
+            0 0 5px white;
+        }
+
+        .autocomplete {
+  position: relative;
+  display: inline-block;
+  width: 300px;
+  border-radius: 8px;
+  
+}
+
+.autocomplete input[type="text"] {
+  width: calc(113% - 40px); 
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  border: 2px solid maroon;
+}
+
+.autocomplete i {
+  position: absolute;
+  top: 50;
+  transform: translateY(-5%);
+  color: #aaa;
+}
+
+#autocompleteResults {
+  color: maroon;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border-top: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.autocomplete-results div {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 10px;
+}
+
+.autocomplete-results div:hover {
+  color: white;
+  background-color: maroon;
+}
+
+.autocomplete-results div:first-child {
+  border-top: none;
+}
+
+        .helpbutton {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        section {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 2em auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 3px solid maroon;;
+        }
+
+        .contact-info,
+        .contact-form {
+            flex: 1;
+            padding: 2em;
+        }
+
+        h2 {
+            color: black;
+        }
+
+        .info-item {
+            margin-bottom: 1em;
+        }
+
+        label {
+            display: block;
+            margin: 1em 0 0.5em;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.5em;
+            margin-bottom: 1em;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 0.5em;
+        }
+
+        button {
+            background-color: white;
+            color: maroon;
+            padding: 0.5em 1em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid maroon;
+        }
+
+        button:hover {
+            background-color: maroon;
+            color: white;
+            border: 2px solid white;
+        }
+        
+
+        footer {
+        background-color: white;
+        color: black;
+        padding: 2px;
+        text-align: center;
+        position: static;
+        bottom: 0;
+        width: 99%;
+        border: 3px solid black;
+    }
+    </style>
+    <title>Contacts</title>
+
+    <div class="autocomplete">
+        <input type="text" id="searchInput" placeholder="Search Pages.....">
+        <div id="autocompleteResults" class="autocomplete-results"></div>
+      </div>      
+
+<script>
+const searchInput = document.getElementById('searchInput');
+const autocompleteResults = document.getElementById('autocompleteResults');
+
+const fixedResults = ['Home', 'Student Organizations', 'Goals', 'Facilities', 'Contacts', 'Help and Support', ]; // Fixed results
+
+// Define mapping of results to corresponding pages
+const pages = {
+'Home': 'home.html',
+'Student Organizations': 'students.html',
+'Goals': 'goal.html',
+'Facilities': 'facility.html',
+'Contacts': 'contact.html',
+'Help and Support': 'help.html'
+};
+
+searchInput.addEventListener('input', function() {
+const searchQuery = this.value;
+let results = [];
+
+if (searchQuery) {
+  // Filter fixed results based on search query
+  results = fixedResults.filter(item =>
+    item.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  // If there are no fixed results matching the search query, clear the autocomplete results
+  if (results.length === 0) {
+    autocompleteResults.innerHTML = '<div>No results found! Try another word!</div>';
+    return;
+  }
+} else {
+  results = fixedResults; // Display fixed results when no query
+}
+
+displayResults(results);
+});
+
+function displayResults(results) {
+if (results.length > 0) {
+  const html = results.map(result => `<div>${result}</div>`).join('');
+  autocompleteResults.innerHTML = html;
+} else {
+  autocompleteResults.innerHTML = '<div>No results found</div>';
+}
+}
+
+autocompleteResults.addEventListener('click', function(event) {
+if (event.target.tagName === 'DIV') {
+  const selectedResult = event.target.textContent;
+  searchInput.value = selectedResult;
+  
+  // Check if the selected result has a corresponding page
+  if (pages[selectedResult]) {
+    // Redirect to the corresponding page
+    window.location.href = pages[selectedResult];
+  } else {
+    console.log("No page found for the selected result.");
+  }
+}
+});
+
+</script>
+
+    <a href="help.html">
+        <button type="helpbutton">Need help?</button>
+      </a>
+</head>
+<body>
+    <header>
+        <h1>Contact Us</h1>
+    </header>
+
+    <section>
+        <div class="contact-info">
+            <h2>Contact Information:</h2>
+            <div class="info-item">
+                <strong>Address:</strong>
+                <p>Don Fabian St., Commonwealth, Quezon City, Philippines</p>
+            </div>
+            <div class="info-item">
+                <strong>Phone:</strong>
+                <p>282878204</p>
+            </div>
+            <div class="info-item">
+                <strong>Email:</strong>
+                <p>quezoncity@pup.edu.ph</p>
+            </div>
+            <div class="info-item">
+                <strong>Facebook Page:</strong>
+                <p>Polythechnic University of the Philippines Quezon City Branch "Official":</p><a href="https://web.facebook.com/ThePUPQCCampusOfficial">https://www.facebook.com/ThePUPQCBranchOfficial</a>
+            </div>
+            <div class="info-item">
+                <strong>Website:</strong>
+                <p>PUPQC Official Webpage:</p><a href="https://www.pup.edu.ph/quezoncity/">https://www.pup.edu.ph/quezoncity/</a>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <h2>Contact Form</h2>
+            <form id="contactForm" onsubmit="event.preventDefault(); submitForm()">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+                <div id="errorMessage" class="error-message"></div>
+
+                <button type="submit">Submit</button>
+            </form>
+    </section>
+
+    <footer>
+        <p>&copy; Thank you for visiting Polythecnic University of the Philippines. &copy; 2024 [PUPQC]. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function submitForm() {
+            // Advanced form validation
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var message = document.getElementById('message').value;
+
+            var errorMessage = document.getElementById('errorMessage');
+            errorMessage.textContent = '';
+
+            if (name.trim() === '' || email.trim() === '' || message.trim() === '') {
+                errorMessage.textContent = 'All fields are required';
+                return;
+            }
+
+            if (!isValidEmail(email)) {
+                errorMessage.textContent = 'Invalid email address';
+                return;
+            }
+
+            // Simulate AJAX form submission
+            sendFormData();
+        }
+
+        function isValidEmail(email) {
+            // Add a more robust email validation logic if needed
+            var emailRegex = /\S+@\S+\.\S+/;
+            return emailRegex.test(email);
+        }
+
+        function sendFormData() {
+            // Simulate AJAX request
+            setTimeout(function () {
+                alert('Form submitted successfully!');
+            }, 500);
+        }
+    </script>
+</html>
