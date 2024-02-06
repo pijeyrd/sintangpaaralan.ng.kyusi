@@ -1,0 +1,288 @@
+html{
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, 'Times New Roman', Times, serif, Verdana, sans-serif;
+    margin: 0px;
+    padding: 0px 150px 60px 150px;
+    background: url(bg1.jpg) no-repeat center center fixed;
+    background-size: cover;
+    color: #000;
+}
+
+header {
+    color: maroon;
+    text-align: center;
+    text-shadow: 0 0 5px white,
+    0 0 5px white,
+    0 0 5px white,
+    0 0 5px white;
+}
+
+button {
+    background-color: white;
+    color: maroon;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid maroon;
+}
+
+button:hover {
+    background-color: maroon;
+    color: white;
+    border: 2px solid white;
+}
+
+nav {
+    background: white;
+    margin: 10px;
+    padding: 10px;
+    border: 5px double black;
+    font-size: 15px;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+nav a {
+    background: black;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+}
+
+nav a { animation: pulse 3s infinite; }
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+nav a:hover {
+    border: 2px black;
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+  }
+
+  .dropdown .dropbtn {     
+    font-size: 15px;
+    font-weight: 10px;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+  }
+
+  .dropdown .dropbtn { animation: pulse 3s infinite; }
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+  .dropdown-content {
+    font-size: 12px;
+    font-weight: 20px;
+    display: none;
+    position: absolute;
+    min-width: 20px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+    background-color: white;
+    border: 3px double maroon;
+  }
+
+  .dropdown-content a {
+    float: none;
+    color: white;
+    padding: 20px 15px;
+    display: block;
+    text-align: left;
+  }
+
+  .dropdown-content a:hover {
+    background-color: maroon;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+.about.video-container {
+    max-width: 100px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+video {
+    width: 50;
+    border-radius: 8px;
+}
+
+.about img,
+.hymn img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.about,
+.hymn,
+.contact{
+
+padding: 40px;
+}
+
+.about,
+.hymn {
+    border: 2px solid #800;
+    background-color: #fff;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.about h2,
+.hymn h2,
+.contact h2 {
+    color: maroon;
+}
+
+.about p,
+.hymn p {
+    color: black;
+}
+
+.about img,
+.history img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.about,
+.history,
+.contact{
+
+padding: 40px;
+}
+
+.about,
+.history {
+    border: 2px solid #800;
+    background-color: #fff;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.about h2,
+.history h2,
+.contact h2 {
+    color: maroon;
+}
+
+.about p,
+.history p {
+    color: black;
+}
+
+.about img,
+.academic img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.about,
+.academic,
+.contact{
+
+padding: 40px;
+}
+
+.about,
+.academic {
+    border: 2px solid #800;
+    background-color: #fff;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.about h2,
+.academic h2,
+.contact h2 {
+    color: maroon;
+}
+
+.about p,
+.academic p {
+    color: black;
+}
+
+.about,
+.latest,
+.contact{
+
+padding: 40px;
+}
+
+.about,
+.latest {
+    border: 2px solid #800;
+    background-color: #fff;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.about h2,
+.latest h2,
+.contact h2 {
+   color: maroon;
+}
+
+.about,
+.Vision,
+.contact{
+
+padding: 40px;
+}
+
+.about,
+.Vision {
+    border: 2px solid #800;
+    background-color: #fff;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.about h2,
+.Vision h2,
+.contact h2 {
+    color: maroon;
+}
+
+footer {
+    background-color: white;
+    color: black;
+    padding: 2px;
+    text-align: center;
+    position: static;
+    bottom: 0;
+    width: 99%;
+    border: 3px solid black;
+}
